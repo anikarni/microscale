@@ -1,4 +1,5 @@
 const Tone = require('./Tone.min.js')
+
 $(function() {
 	var samplesFormat = Tone.Buffer.supportsType("mp3") ? "mp3" : "ogg";
 	var trackData = JSON.parse(data);
@@ -324,13 +325,10 @@ $(function() {
 
 		$.getJSON('https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=1000&grnlimit=6&exlimit=6&exintro&format=json&callback=?',
 		function (data) {
-      // здесь обновляем буферы
       var n = 0;
       for (var page in data.query.pages) {
         var content = data.query.pages[page].extract;
-        // удаляем все теги, кроме <p></p>
         var str = content.replace(/(<((?!(p|\/p))[^>]+)>)/ig, '');
-        // удаляем 3 последних символа ("...")
         str = str.slice(0,-3);
         Player.buffers[n++].update(str);
       }
