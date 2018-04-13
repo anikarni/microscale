@@ -4,14 +4,14 @@
 	font-family: 'microscale-menlo';
 	font-style: normal;
 	font-weight: normal;
-	src: url('fonts/Menlo-Regular.woff') format('woff');
+	src: url('./fonts/Menlo-Regular.woff') format('woff');
 }
 
 @font-face {
   font-family: 'microscale-roboto';
   font-style: normal;
   font-weight: normal;
-  src: url('fonts/RobotoSlab-Regular.woff') format('woff');
+  src: url('./fonts/RobotoSlab-Regular.woff') format('woff');
 }
 
 body {
