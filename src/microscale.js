@@ -1,4 +1,7 @@
 const Tone = require('./Tone.min.js')
+
+const instruments = ['violin', 'cello', 'violin2', 'cello3', 'tenor-trombone', 'cello2']
+
 $(function() {
 	var samplesFormat = Tone.Buffer.supportsType("mp3") ? "mp3" : "ogg";
 	var trackData = JSON.parse(data);
@@ -368,9 +371,13 @@ $(function() {
 
     // add extensions to samples
     var samplemapWithExt = {};
-    for (var key in Player.data.samplemap) {
-      samplemapWithExt[key] = Player.data.samplemap[key] + '.' + samplesFormat;
-    }
+    [0, 1, 2, 3, 4, 5].forEach(i => {
+      'abcdefghijklmnopqrstuvwxyz'.split('').forEach((letter, index) => {
+        const letterNum = (index + 1)%6 + 1
+        samplemapWithExt[`#buffer-${i+1}.${letterNum}`] = `./samples/${instruments[i]}/${letter}.${samplesFormat}`;
+      })
+
+    })
 
 		// Load samples bank
 		Player.samples = new Tone.Buffers(samplemapWithExt, function() {
