@@ -1,5 +1,4 @@
 const Tone = require('./Tone.min.js')
-
 $(function() {
 	var samplesFormat = Tone.Buffer.supportsType("mp3") ? "mp3" : "ogg";
 	var trackData = JSON.parse(data);
@@ -21,7 +20,7 @@ $(function() {
 		this.position = 0;
 		this.id = id;
 		this.overlayID = overlayID;
-		this.content = $(this.id).text();
+		this.content = $(this.id).val();
 		this.map = {};
 		this.allMatchedIndexes = [];
 		this.currentParagraphIndex = 0;
@@ -178,15 +177,15 @@ $(function() {
     var buffNum = parseInt(this.id.slice(-1)) - 1;
 
     // loading text into buffer
-    $(self.id).html(textContent).promise().done(function() {
+    $(self.id).val(textContent).promise().done(function() {
 
-      self.size = $(self.id).text().length;
+      self.size = $(self.id).val().length;
       self.position = 0;
       self.currentParagraphIndex = 0;
       self.previousParagraphLength = 0;
       self.lastParagraphNumber = 0;
 
-      self.content = $(self.id).text();
+      self.content = $(self.id).val();
 
       // hidding loading indicator
       $("#load-indic-buf-"+(buffNum+1)).hide();
@@ -325,10 +324,13 @@ $(function() {
 
 		$.getJSON('https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=1000&grnlimit=6&exlimit=6&exintro&format=json&callback=?',
 		function (data) {
+      // здесь обновляем буферы
       var n = 0;
       for (var page in data.query.pages) {
         var content = data.query.pages[page].extract;
-        var str = content.replace(/(<((?!(p|\/p))[^>]+)>)/ig, '');
+        //удаляем все теги, кроме <p></p> NOT ANYMORE
+        var str = content.replace(/(<([^>]+)>)/ig, '');
+        // удаляем 3 последних символа ("...")
         str = str.slice(0,-3);
         Player.buffers[n++].update(str);
       }
@@ -450,6 +452,37 @@ $(function() {
 
 		Player.willPlayTrack($(this).text(), function(){});
 	});
+
+  $("#buffer-1").focusout(function() {
+    var newContent = $("#buffer-1").val()
+    Player.buffers[0].update(newContent);
+    console.log(Player)
+  })
+  $("#buffer-2").focusout(function() {
+    var newContent = $("#buffer-2").val()
+    Player.buffers[1].update(newContent);
+    console.log(Player)
+  })
+  $("#buffer-3").focusout(function() {
+    var newContent = $("#buffer-3").val()
+    Player.buffers[2].update(newContent);
+    console.log(Player)
+  })
+  $("#buffer-4").focusout(function() {
+    var newContent = $("#buffer-4").val()
+    Player.buffers[3].update(newContent);
+    console.log(Player)
+  })
+  $("#buffer-5").focusout(function() {
+    var newContent = $("#buffer-5").val()
+    Player.buffers[4].update(newContent);
+    console.log(Player)
+  })
+  $("#buffer-6").focusout(function() {
+    var newContent = $("#buffer-6").val()
+    Player.buffers[5].update(newContent);
+    console.log(Player)
+  })
 
 	//-----------------
 	// INITIALIZATIONS
