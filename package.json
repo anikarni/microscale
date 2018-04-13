@@ -1,0 +1,30 @@
+{
+  "name": "microscale",
+  "version": "1.0.0",
+  "description": "Generated in real-time from random Wikipedia articles, **microscale** is a web-based, generative album, also available as a rendered physical CDR and digital download. Each article functions a step sequencer – where the letters are the sequencer steps and the track titles are regular expressions that switch the steps on and off. The web version is generated in real-time and is also hackable – the regular expressions, samples, tempo and other parameters can be edited or replaced – enabling **microscale** to be used as an instrument and sequencer for the listener’s own music.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anikarni/microscale.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anikarni/microscale/issues"
+  },
+  "homepage": "https://github.com/anikarni/microscale#readme",
+  "dependencies": {
+    "tone": "^0.12.80"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "jquery": "^3.3.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3"
+  }
+}

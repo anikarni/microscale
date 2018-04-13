@@ -1,3 +1,4 @@
+const Tone = require('./Tone.min.js')
 $(function() {
 	var samplesFormat = Tone.Buffer.supportsType("mp3") ? "mp3" : "ogg";
 	var trackData = JSON.parse(data);
